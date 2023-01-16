@@ -5,7 +5,7 @@ const UserSchema = new Schema(
    {
       name: {
          type: String,
-         required: true,
+         required: false,
       },
       email: {
          type: String,
@@ -19,6 +19,12 @@ const UserSchema = new Schema(
          required: true,
          minlength: 6,
       },
+      // password2: {
+      //    type: String,
+      //    required: true,
+      //    minlength: 6,
+      //    // match: "loko",
+      // },
       role: {
          type: String,
          enum: ["user", "admin", "super_admin"],

@@ -8,9 +8,11 @@ import MovieController from"../controllers/MovieController.js";
 
 
 
+
 /* GET users listing. */
 router.get("/", MovieController.getAll);
 router.get("/:id", MovieController.getById );
+
 
 
 export default router;

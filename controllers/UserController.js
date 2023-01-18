@@ -21,7 +21,7 @@ UserController.getAll = async (req, res) => {
    }
 };
 
-UserController.rentUserMovies = async (req, res) => {
+UserController.updateUserMovies = async (req, res) => {
    try{
       const user = await User.findById(req.params.id);
       const movie = req. body;
@@ -33,13 +33,13 @@ UserController.rentUserMovies = async (req, res) => {
             inserted: false,
          });
       }else {
-         const rentUser = await User.rentOne(
+         const updatedUser = await User.updateOne(
             {_id: req.params.id},
             {$push: {movies: req.body}}
          );
          res.json({
             message: "User movies renting successfully",
-            data: rentUser,
+            data: updatedUser,
             inserted: true,
          });
       }

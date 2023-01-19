@@ -11,6 +11,10 @@ const MovieSchema = new Schema(
          required: true,
          
       },
+      id: {
+         type: Number,
+         
+      },
       // poster_path: {
       //    type: Number,
       //    required: true,
@@ -22,6 +26,6 @@ const MovieSchema = new Schema(
    }
 );
 
-const Movie = model("Movie", MovieSchema);
+const Movie = model("movies", MovieSchema);
 
 export default Movie;

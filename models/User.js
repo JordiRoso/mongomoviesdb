@@ -30,12 +30,17 @@ const UserSchema = new Schema(
          enum: ["user", "admin", "super_admin"],
          default: "user",
       },
+      movies: {
+         type: Array,
+         
+         default:[],
+      },
    },
    {
       timestamps: true,
    }
 );
 
-const User = model("User", UserSchema);
+const User = model("users", UserSchema);
 
 export default User;

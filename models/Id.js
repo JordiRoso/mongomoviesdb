@@ -22,6 +22,6 @@ const IdSchema = new Schema(
    }
 );
 
-const Id = model("Id", IdSchema);
+const Id = model("id", IdSchema);
 
 export default Id;

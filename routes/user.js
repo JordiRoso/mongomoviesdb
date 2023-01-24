@@ -9,9 +9,9 @@ import verifyToken from"../middelwares/verifyToken.js";
 /* GET users listing. */
 router.get("/users", verifyToken, isSuperAdmin, UserController.getAll);
 router.get("/",UserController.getAll);
-router.patch("/users/:userId/rent/:movieId", UserController.rentUserMovies);
+router.patch("/:userId/rent", UserController.rentUserMovies);
 router.patch("/users/:userId/delete/:movieId", UserController.deleteUserMovies);
-router.get("/name",UserController.getByName);
+router.get("/:name",UserController.getByName);
 router.delete("/:id/deleteMovie/:movieId", UserController.deleteMovie)
 router.delete("/delete/:id", UserController.deleteById);
 

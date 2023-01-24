@@ -122,8 +122,8 @@ UserController.rentUserMovies = async (req, res) => {
    try {
      const user = await User.findById(req.params.userId);
      const movie = req.body;
-     // const match = user.movies.find((m) => m._id == movie._id);
-     const match = false;
+     const match = user.movies.find((m) => m._id == movie._id);
+   //   const match = false;
      if (match) {
        res.json({
          message: "User already have this movie",
@@ -144,6 +144,8 @@ UserController.rentUserMovies = async (req, res) => {
      res.status(500).json({ message: error.message });
    }
  };
+
+
  UserController.deleteUserMovies = async (req, res) => {
    console.log(req.params);
    try {

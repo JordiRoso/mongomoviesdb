@@ -21,38 +21,7 @@ UserController.getAll = async (req, res) => {
    }
 };
 
-// UserController.updateUserMovies = async (req, res) => {
-//    console.log(req.params)
-//    try{
-//       const user = await User.finById(req.params.userId);
-//       const movie = req. body;
-//       const match = user.movies.find((m) => m._id == movie._id);
 
-//       if (match) {
-//          res.json({
-//             message:"El usuario ya tiene esta peli",
-//             inserted: false,
-//          });
-//       }else {
-//          const updatedUser = await User.updateOne(
-//             {_id: req.params.userId},
-//             {$push: {movies: eq.params.movieId}}
-//          );
-//          res.json({
-//             message: "User movies renting successfully",
-//             data: updatedUser,
-//             inserted: true,
-//          });
-//       }
-//    } catch (error){
-//       return res.status(500).json({
-//          success: false,
-//          message: "Error renting",
-//          error: error.message,
-//       });
-
-//    }
-// }
 
 
 UserController.getByName = async (req, res) => {
@@ -80,7 +49,7 @@ UserController.getByName = async (req, res) => {
 
 UserController.deleteMovie = async (req, res) => {
    try {
-      const updatedUser = await User.rentOne(
+      const updatedUser = await User.updateOne(
          {_id: req.params.id},
          {$pull: {movies: {_id: req.params.movieId}}}
       );
@@ -120,7 +89,8 @@ UserController.deleteById = async (req,res) => {
 UserController.rentUserMovies = async (req, res) => {
    console.log(req.params);
    try {
-     const user = await User.findById(req.params.userId);
+     const user = await User.findById(req.params.id);
+   //   const user = await User.findById(req.params.userId);
      const movie = req.body;
      const match = user.movies.find((m) => m._id == movie._id);
    //   const match = false;
@@ -131,8 +101,10 @@ UserController.rentUserMovies = async (req, res) => {
        });
      } else {
        const updatedUser = await User.updateOne(
-         { _id: req.params.userId },
-         { $push: { movies: req.params.movieId } }
+         { _id: req.params.id },
+         // { _id: req.params.userId },
+         { $push: { movies: req.body } }
+         // { $push: { movies: req.params.movieId } }
        );
        res.json({
          message: "User movies updated successfully",
@@ -146,33 +118,33 @@ UserController.rentUserMovies = async (req, res) => {
  };
 
 
- UserController.deleteUserMovies = async (req, res) => {
-   console.log(req.params);
-   try {
-     const user = await User.findById(req.params.userId);
-     const movie = req.body;
+//  UserController.deleteUserMovies = async (req, res) => {
+//    console.log(req.params);
+//    try {
+//      const user = await User.findById(req.params.userId);
+//      const movie = req.body;
  
-     const match = false;
-     if (match) {
-       res.json({
-         message: "User already have this movie",
-         inserted: false,
-       });
-     } else {
-       const updatedUser = await User.updateOne(
-         { _id: req.params.userId },
-         { $pull: { movies: req.params.movieId } }
-       );
-       res.json({
-         message: "User movies updated successfully",
-         data: updatedUser,
-         inserted: true,
-       });
-     }
-   } catch (error) {
-     res.status(500).json({ message: error.message });
-   }
- };
+//      const match = false;
+//      if (match) {
+//        res.json({
+//          message: "User already have this movie",
+//          inserted: false,
+//        });
+//      } else {
+//        const updatedUser = await User.updateOne(
+//          { _id: req.params.userId },
+//          { $pull: { movies: req.params.movieId } }
+//        );
+//        res.json({
+//          message: "User movies updated successfully",
+//          data: updatedUser,
+//          inserted: true,
+//        });
+//      }
+//    } catch (error) {
+//      res.status(500).json({ message: error.message });
+//    }
+//  };
  
 
 

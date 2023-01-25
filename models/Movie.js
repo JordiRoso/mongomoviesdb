@@ -2,30 +2,61 @@ import { Schema, model} from "mongoose";
 
 const MovieSchema = new Schema(
    {
-      title: {
+      adult: {
+         type: Boolean,
+         required: false,
+       },
+       backdrop_path: {
+         type: String,
+         required: false,
+       },
+       password: {
          type: String,
          required: true,
-      },
-      vote_average: {
-         type: String,
-         required: true,
-         
-      },
-      id: {
-         type: Number,
-         
-      },
-      // poster_path: {
-      //    type: Number,
-      //    required: true,
-      // },
-      
+         minlength: 6,
+       },
+       genre_ids: {
+         type: Array
+       },
+       id: {
+         type: Number
+       },
+       original_language: {
+         type: String
+       },
+       original_title: {
+         type: String
+       },
+       overview: {
+         type: String
+       },
+       popularity: {
+         type: String
+       },
+       poster_path: {
+         type: String
+       },
+       release_date: {
+         type: Date
+       },
+       title: {
+         type: String
+       },
+       video: {
+         type: Boolean
+       },
+       vote_average: {
+         type: Number
+       },
+       vote_count: {
+         type: Number
+       }
    },
    {
       timestamps: true,
    }
 );
 
-const Movie = model("movies", MovieSchema);
+const Movie = model("movie", MovieSchema);
 
 export default Movie;
